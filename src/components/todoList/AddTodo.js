@@ -9,9 +9,8 @@ export default function AddTodo(props) {
 
     const handleSubmit = () => {
         setTodoValues(prev => [...prev, todoValue]);
+        setTodoValue('')
     }
-
-    console.log(todoValues);
 
     return (
         <div className="flex top-0 left-0 right-0 bottom-0 bg-[rgba(0,0,0,0.6)] fixed items-center justify-center">
@@ -27,10 +26,16 @@ export default function AddTodo(props) {
                     <button onClick={handleSubmit} type="submit" className=" bg-blue-700 rounded-full w-[100px] h-[50px] m-2 cursor-pointer">
                         Submit
                     </button>
-                    <FontAwesomeIcon icon={faCircleXmark} className='m-4 cursor-pointer' size='2xl'/>
+                    <FontAwesomeIcon onClick={props.value} icon={faCircleXmark} className='m-4 cursor-pointer' size='2xl'/>
                 </div>
             </div>
-            <Todolist></Todolist>
+            <Todolist todoValues={todoValues} todoValue={todoValue}></Todolist>
+            {/* <ul className='flex flex-col'>
+                {todoValues.map((todoValue, index) =>(
+                        <li key={index} className=''> <Todolist>{todoValue}</Todolist></li>
+                ))
+                }
+            </ul> */}
         </div>
     );
 }
