@@ -2,100 +2,63 @@ import { faPen, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import Modify from './Modify';
-import Button from './ui/Button';
 
-export default function Todolist({
-    props,
-    todoValues,
-    todoValue,
-    handleDelete,
-    handleSaveEdit,
-    setEditText,
-    showPopup,
-    handleConfirm,
-    handleCancel,
-    isConfirmed,
-    togglePopup,
-    toogleComplete,
-}) {
-    // console.log(setArray)
+export default function Todolist(props, { allTodos }) {
     Todolist.propTypes = {
-        todoValues: PropTypes.array,
+        allTodos: PropTypes.array,
     };
 
     Todolist.defaultProps = {
-        todoValues: [],
+        allTodos: [],
     };
 
-    const [add, setAdd] = useState(false);
-    const hanldeClick = () => {
-        setAdd(true);
-    };
-    const handleClickOut = () => {
-        setAdd(false);
-    };
-
+    console.log(allTodos);
     return (
         <div>
-            {todoValues.map((todoValue, index) => (
-                <li key={index} className="flex bg-white w-[95%] h-[70px] rounded-xl m-4 items-center justify-between">
-                    <div className="flex">
-                        <input
-                            onClick={() => toogleComplete(index)}
-                            type="checkbox"
-                            className="w-[30px] h-[30px] m-2"
-                        ></input>
-                        <p className={'${task.completed ? "conpleted" : ""}'}>{todoValue}</p>
+            {/* {allTodos.map((item,index)=>(
+                <li key={index}></li>
+            ))} */}
+            <li className="flex bg-white h-[70px] rounded-xl m-4 items-center justify-between">
+                <div className="flex">
+                    <input type="checkbox" className="w-[25px] h-[25px] m-4"></input>
+                    <div className="">
+                        <h2 className="text-[20px]">{props.Name}</h2>
+                        <div className="flex">
+                            <p>{props.Time},</p>
+                            <p>{props.Date}</p>
+                        </div>
                     </div>
-
-                    <div>
-                        {showPopup && (
-                            <div className="flex m-4">
-                                <div onClick={() => togglePopup(index)}>
-                                    <FontAwesomeIcon
-                                        className="bg-slate-200 w-[25px] h-[25px] p-2 mr-4 rounded-md cursor-pointer"
-                                        icon={faTrash}
-                                    />
-                                </div>
-                                <div>
-                                    <FontAwesomeIcon
-                                        onClick={hanldeClick}
-                                        className="bg-slate-200 w-[25px] h-[25px] p-2 mr-4 rounded-md cursor-pointer"
-                                        icon={faPen}
-                                    />
-                                </div>
-                            </div>
-                        )}
-                        {!showPopup && (
-                            <div className="">
-                                <button
-                                    className="text-white bg-blue-500 w-[90px] h-[25px] m-4 rounded-2xl"
-                                    onClick={handleConfirm}
-                                >
-                                    Confirm
-                                </button>
-                                <button
-                                    className="text-white bg-red-400 w-[60px] h-[25px] m-4 rounded-2xl"
-                                    onClick={isConfirmed}
-                                >
-                                    Cancle
-                                </button>
-                            </div>
-                        )}
-                    </div>
-                </li>
-            ))}
-
-            {add && (
-                <div>
-                    <Modify
-                        handleClickOut={handleClickOut}
-                        handleSaveEditParent={handleSaveEdit}
-                        setEditTextParent={setEditText}
-                    />
                 </div>
-            )}
+
+                <div>
+                    <div className="flex m-4">
+                        <div>
+                            <FontAwesomeIcon
+                                className="bg-slate-200 w-[25px] h-[25px] p-2 mr-4 rounded-md cursor-pointer"
+                                icon={faTrash}
+                            />
+                        </div>
+                        <div>
+                            <FontAwesomeIcon
+                                className="bg-slate-200 w-[25px] h-[25px] p-2 mr-4 rounded-md cursor-pointer"
+                                icon={faPen}
+                            />
+                        </div>
+                    </div>
+                    {/* (
+                    <div className="">
+                        <button className="text-white bg-blue-500 w-[90px] h-[25px] m-4 rounded-2xl">Confirm</button>
+                        <button className="text-white bg-red-400 w-[60px] h-[25px] m-4 rounded-2xl">Cancle</button>
+                    </div>
+                    ) */}
+                </div>
+            </li>
+
+            <div>
+                {/* <Modify
+                   
+                /> */}
+            </div>
         </div>
     );
 }
