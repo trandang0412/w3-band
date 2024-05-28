@@ -1,31 +1,31 @@
 import { faPen, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React, { useState } from 'react';
-import PropTypes from 'prop-types';
+import React from 'react';
+import './style.css'
 
-export default function Todolist(props, { allTodos }) {
-    Todolist.propTypes = {
-        allTodos: PropTypes.array,
-    };
+export default function Todolist(props) {
 
-    Todolist.defaultProps = {
-        allTodos: [],
-    };
-
-    console.log(allTodos);
     return (
         <div>
+            {/* {Array.isArray(items) ? (
+                allTodos.map((item, index) => (
+                    <div key={index}>{item.todo}</div>
+                ))
+            ) : (
+                <div>Không có dữ liệu để hiển thị.</div>
+            )} */}
             {/* {allTodos.map((item,index)=>(
-                <li key={index}></li>
+                <li key={index}> {item.todo} </li>
             ))} */}
+
             <li className="flex bg-white h-[70px] rounded-xl m-4 items-center justify-between">
                 <div className="flex">
-                    <input type="checkbox" className="w-[25px] h-[25px] m-4"></input>
+                    <input onChange={props.onChangeComplete} onClick={props.onClickComplete} type="checkbox" className="w-[25px] h-[25px] m-4"></input>
                     <div className="">
-                        <h2 className="text-[20px]">{props.Name}</h2>
+                        <h2 className={props.className} >{props.Name}</h2>
                         <div className="flex">
-                            <p>{props.Time},</p>
-                            <p>{props.Date}</p>
+                            <p>{props.Time} ,</p>
+                            <p className='ml-1'>{props.Date}</p>
                         </div>
                     </div>
                 </div>
@@ -36,6 +36,7 @@ export default function Todolist(props, { allTodos }) {
                             <FontAwesomeIcon
                                 className="bg-slate-200 w-[25px] h-[25px] p-2 mr-4 rounded-md cursor-pointer"
                                 icon={faTrash}
+                                onClick={props.onClickDelete}
                             />
                         </div>
                         <div>
@@ -59,6 +60,7 @@ export default function Todolist(props, { allTodos }) {
                    
                 /> */}
             </div>
+
         </div>
     );
 }
