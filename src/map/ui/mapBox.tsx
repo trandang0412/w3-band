@@ -1,6 +1,7 @@
-import { useRef, useState } from 'react';
+import { useContext, useRef, useState } from 'react';
 import ReactMapGL, { Marker } from 'react-map-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
+import { mapContext } from '../context/mapContext';
 
 const TOKEN = process.env.REACT_APP_TOKEN;
 
@@ -15,11 +16,7 @@ interface MapRef{
 
 
 function MapBox({ mapData }: Props) {
-    const [viewPort, setViewPort] = useState({
-        latitude: 17.161349,
-        longitude: 107.339017,
-        zoom: 6,
-    });
+        const {viewPort, setViewPort} = useContext(mapContext)
 
     return (
         <div>

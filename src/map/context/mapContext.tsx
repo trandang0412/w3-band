@@ -22,14 +22,24 @@ export interface Iplace {
     name: string;
 }
 
+interface ViewPort {
+    latitude: number;
+    longitude: number;
+    zoom: number;
+}
+
 interface ImapContext {
     mapData: Imap[];
     mapPlace: Iplace[];
+    viewPort: ViewPort;
+    setViewPort: React.Dispatch<React.SetStateAction<ViewPort>>;
 }
 
 export const mapContext = createContext<ImapContext>({
     mapData: [],
     mapPlace: [],
+    viewPort: { latitude: 0, longitude: 0, zoom: 0 },
+    setViewPort: () => {}
 });
 
 interface Props {
@@ -71,9 +81,17 @@ export const MapContextProvider: React.FC<Props> = ({ children }) => {
         
     };
 
+    const [viewPort, setViewPort] = useState<ViewPort>({
+        latitude: 17.161349,
+        longitude: 107.339017,
+        zoom: 6,
+    });
+
     const mapContextData = {
         mapData,
         mapPlace,
+        viewPort,
+        setViewPort,
     };
     return <mapContext.Provider value={mapContextData}>{children}</mapContext.Provider>;
 };
