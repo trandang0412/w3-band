@@ -45,7 +45,7 @@ function MapBox({ mapData }: Props) {
                                     setShowPopup(item.source_code);
                                 }}
                             >
-                                <img src="https://cdn2-staging.kidsplaza.store/assets/icons/marker.png" />
+                                <img className='w-[50%]' src="https://cdn2-staging.kidsplaza.store/assets/icons/marker.png" />
                             </Marker>
 
                             {showPopup === item.source_code && (
@@ -65,9 +65,9 @@ function MapBox({ mapData }: Props) {
                                             />
                                         </div>
                                         <div>
-                                            <div>{item.name}</div>
-                                            <div>{item.description}</div>
-                                            <div>{item.street}</div>
+                                            <div className='py-1'><b>Địa chỉ: </b> {item.name}</div>
+                                            <div className='py-1'><b>Mô tả: </b>{item.description}</div>
+                                            <div className='py-1'><b>Số điện thoại: </b>{item.phone}</div>
                                         </div>
                                     </div>
                                 </Popup>
