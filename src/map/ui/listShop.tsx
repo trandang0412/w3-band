@@ -31,20 +31,17 @@ export default function ListShop({ listData, listPlace }: Props) {
 
     const [seclectRegion, setSelectRegion] = useState<Imap[]>([]);
     const fetchDistrict = (provincesId: number) => {
-        console.log(provincesId);
         const newArr = listData.filter((item) => item.region_id === provincesId);
         setSelectRegion(newArr);
     };
 
     const handleGetDirections = (longitude: number, latitude: number) => {
-        console.log(longitude);
-        console.log(latitude);
         setViewPort({
             ...viewPort,
             longitude,
             latitude,
-            zoom: 16,
-        });
+            zoom: 15,
+        })
     };
 
     return (
@@ -54,7 +51,7 @@ export default function ListShop({ listData, listPlace }: Props) {
 
             <div>
                 <select
-                    className="outline-none p-4 text-[18px] ml-5 border-solid border-1 rounded-2xl"
+                    className="outline-none p-2 text-[18px] ml-5 border-solid border-1 rounded-2xl"
                     onChange={getProvinces}
                 >
                     <option value={-1}> Tất cả</option>
@@ -67,7 +64,7 @@ export default function ListShop({ listData, listPlace }: Props) {
                             );
                         })}
                 </select>
-                <div className="flex h-[1032px] flex-col gap-4 overflow-auto mt-5">
+                <div className="flex h-[600px] flex-col gap-4 overflow-auto mt-5">
                     {viewAll < 0 ? (
                         listData.map((item) => {
                             return (
@@ -82,7 +79,7 @@ export default function ListShop({ listData, listPlace }: Props) {
                                         </p>
                                         <button
                                             className="text-[#5479BB]"
-                                            onClick={() => handleGetDirections(item.latitude, item.longitude)}
+                                            onClick={() => handleGetDirections(item.longitude, item.latitude)}
                                         >
                                             Nhận chỉ đường
                                         </button>
@@ -104,7 +101,7 @@ export default function ListShop({ listData, listPlace }: Props) {
                                         </p>
                                         <button
                                             className="text-[#5479BB]"
-                                            onClick={() => handleGetDirections(item.latitude, item.longitude)}
+                                            onClick={() => handleGetDirections(item.longitude, item.latitude)}
                                         >
                                             Nhận chỉ đường
                                         </button>
